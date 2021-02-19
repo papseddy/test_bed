@@ -4,4 +4,4 @@
   tasks:
     - ping:
     - file:
-        path: /tmp/new_file
+        path: new_file
