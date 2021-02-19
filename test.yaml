@@ -5,3 +5,4 @@
     - ping:
     - file:
         path: new_file
+        state: touch
