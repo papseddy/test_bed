@@ -5,4 +5,3 @@
     - ping:
     - file:
         path: /tmp/new_file
-        state: file
