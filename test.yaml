@@ -3,3 +3,6 @@
   gather_facts: false
   tasks:
     - ping:
+    - file:
+        path: /tmp/new_file
+        state: present
