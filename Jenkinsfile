@@ -1,9 +1,21 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('Build') {
       steps {
-        ansiblePlaybook 'test.yaml'
+        sh 'yum install ansible'
+      }
+    }
+
+    stage('Deployment') {
+      steps {
+        sh '/usr/local/bin/ansible-playbook test.yaml'
+      }
+    }
+
+    stage('Result') {
+      steps {
+        echo 'Successfull'
       }
     }
 
