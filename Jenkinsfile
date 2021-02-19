@@ -3,13 +3,13 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'yum install ansible'
+        sh 'sudo yum install ansible'
       }
     }
 
     stage('Deployment') {
       steps {
-        sh '/usr/local/bin/ansible-playbook test.yaml'
+        sh 'sudo /usr/local/bin/ansible-playbook test.yaml'
       }
     }
 
