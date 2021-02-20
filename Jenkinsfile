@@ -7,6 +7,23 @@ pipeline {
       }
     }
 
+    stage("unit_test"){
+        steps{
+            sh 'ansible-playbook test.yaml --check --diff'
+        }
+        post{
+            always{
+                junit 'build/reports/**/*.xml'
+            }
+            success{
+                echo "====++++Checking playbooks executed successfully++++===="
+            }
+            failure{
+                echo "====++++Checking playbooks execution failed++++===="
+            }
+    
+        }
+    }
     stage('Deployment') {
       steps {
         sh 'sudo /usr/local/bin/ansible-playbook test.yaml'
