@@ -9,4 +9,4 @@
     - name: installing basic vim
       apt:
         name: vim
-        state: installed
+        state: latest
