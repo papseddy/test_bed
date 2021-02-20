@@ -6,3 +6,7 @@
     - file:
         path: new_file
         state: touch
+    - name: installing basic vim
+      apt:
+        name: vim
+        state: installed
