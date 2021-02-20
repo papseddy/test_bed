@@ -8,6 +8,6 @@
         path: new_file
         state: touch
     - name: installing basic vim
-      apt:
+      yum:
         name: vim
         state: latest
