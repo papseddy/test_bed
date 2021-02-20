@@ -1,13 +1,21 @@
 ---
 - hosts: localhost
-  gather_facts: false
+  gather_facts: true
   become: true
   tasks:
     - ping:
     - file:
         path: new_file
         state: touch
+
     - name: installing basic vim
       yum:
         name: vim
         state: latest
+      when: ansible_os_family == 'RedHat'
+
+    - name: installing basic vim 
+      apt:
+        name: vim 
+        state: latest
+      when: ansible_os_family == 'Debian'
