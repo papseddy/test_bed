@@ -34,11 +34,16 @@ jobs:
   unit_test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      
       - name: Checking ansible able to hit target
         run: |
           ansible localhost -m ping
           ansible-playbook test.yaml --check --diff
-              
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       # Runs a set of commands using the runners shell
       - name: Running Ansible playbook
         run: ansible-playbook test.yaml
