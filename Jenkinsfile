@@ -1,40 +1,34 @@
-pipeline {
-  agent any
-  stages {
-    stage('Build') {
-      parallel {
-        stage('Build') {
-          steps {
-            echo 'Starting Build'
-            sleep 3
-            node(label: 'ubuntu_test') {
-              echo 'asdfasdf'
-            }
-
-            cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, cleanupMatrixParent: true, deleteDirs: true, disableDeferredWipeout: true)
-            timestamps() {
-              sleep 2
-            }
-
-          }
-        }
-
-        stage('Build2') {
-          steps {
-            mail(subject: 'starting build', body: 'asdfasdf', to: 'papseddy@gmail.com')
-          }
-        }
-
-      }
+pipeline{
+    agent{
+        label "ubuntu_test"
     }
-
-    stage('deployment') {
-      steps {
-        sh 'echo "test"'
-        fileExists 'test.yaml'
-        milestone(ordinal: -1, label: 'asdf', unsafe: true)
-      }
+    stages{
+        stage("Build"){
+            steps{
+                echo "========executing Build========"
+            }
+            post{
+                always{
+                    echo "========always========"
+                }
+                success{
+                    echo "========Build executed successfully========"
+                }
+                failure{
+                    echo "========Build execution failed========"
+                }
+            }
+        }
     }
-
-  }
+    post{
+        always{
+            echo "========always========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
 }
