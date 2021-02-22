@@ -1,6 +1,8 @@
 pipeline{
-    agent{
-        label "ubuntu_test"
+    agent {
+        docker {
+        alwaysPull true
+        image 'ubuntu:latest'
     }
     stages{
         stage("Build"){
@@ -31,4 +33,5 @@ pipeline{
             echo "========pipeline execution failed========"
         }
     }
+}
 }
