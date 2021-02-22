@@ -3,6 +3,7 @@ pipeline{
         docker {
         alwaysPull true
         image 'ubuntu:latest'
+        }
     }
     stages{
         stage("Build"){
@@ -33,5 +34,4 @@ pipeline{
             echo "========pipeline execution failed========"
         }
     }
-}
 }
